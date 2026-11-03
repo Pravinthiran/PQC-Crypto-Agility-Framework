@@ -1,0 +1,26 @@
+# Virtual environment
+venv/
+.venv/
+env/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Local compiled binaries and libraries (DO NOT push whole C/C++ builds)
+liboqs/
+build/
+dist/
+*.dll
+*.so
+*.dylib
+*.lib
+*.obj
+*.exe
+
+# VS Code settings
+.vscode/
+
+# Local Streamlit config
+.streamlit/secrets.toml

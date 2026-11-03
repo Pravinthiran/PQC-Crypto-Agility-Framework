@@ -1,0 +1,58 @@
+[
+  {
+    "category":"Classical Baseline",
+    "standard":"PKCS#1 v2.2",
+    "primitive":"RSA-2048",
+    "iterations":50,
+    "keygen_latency_ms":38.8428,
+    "encap_latency_ms":0.98,
+    "decap_latency_ms":0.0378,
+    "total_cycle_ms":39.8606,
+    "public_key_bytes":270,
+    "ciphertext_or_sig_bytes":256,
+    "cpu_time_total_ms":1984.38,
+    "ram_delta_kb":1832.0
+  },
+  {
+    "category":"Key Encapsulation (KEM)",
+    "standard":"FIPS 203",
+    "primitive":"ML-KEM-768",
+    "iterations":50,
+    "keygen_latency_ms":0.072,
+    "encap_latency_ms":0.0405,
+    "decap_latency_ms":0.0414,
+    "total_cycle_ms":0.1539,
+    "public_key_bytes":1184,
+    "ciphertext_or_sig_bytes":1088,
+    "cpu_time_total_ms":0.0,
+    "ram_delta_kb":84.0
+  },
+  {
+    "category":"Digital Signature",
+    "standard":"FIPS 204",
+    "primitive":"ML-DSA-65",
+    "iterations":50,
+    "keygen_latency_ms":0.1209,
+    "encap_latency_ms":0.3191,
+    "decap_latency_ms":0.102,
+    "total_cycle_ms":0.542,
+    "public_key_bytes":1952,
+    "ciphertext_or_sig_bytes":3309,
+    "cpu_time_total_ms":31.25,
+    "ram_delta_kb":48.0
+  },
+  {
+    "category":"Digital Signature",
+    "standard":"FIPS 205",
+    "primitive":"SLH_DSA_PURE_SHAKE_128S",
+    "iterations":15,
+    "keygen_latency_ms":98.2763,
+    "encap_latency_ms":769.1669,
+    "decap_latency_ms":0.8141,
+    "total_cycle_ms":868.2573,
+    "public_key_bytes":32,
+    "ciphertext_or_sig_bytes":7856,
+    "cpu_time_total_ms":12937.5,
+    "ram_delta_kb":40.0
+  }
+]

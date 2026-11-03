@@ -1,0 +1,5 @@
+category,standard,primitive,iterations,keygen_latency_ms,encap_latency_ms,decap_latency_ms,total_cycle_ms,public_key_bytes,ciphertext_or_sig_bytes,cpu_time_total_ms,ram_delta_kb
+Classical Baseline,PKCS#1 v2.2,RSA-2048,50,38.8428,0.98,0.0378,39.8606,270,256,1984.38,1832.0
+Key Encapsulation (KEM),FIPS 203,ML-KEM-768,50,0.072,0.0405,0.0414,0.1539,1184,1088,0.0,84.0
+Digital Signature,FIPS 204,ML-DSA-65,50,0.1209,0.3191,0.102,0.542,1952,3309,31.25,48.0
+Digital Signature,FIPS 205,SLH_DSA_PURE_SHAKE_128S,15,98.2763,769.1669,0.8141,868.2573,32,7856,12937.5,40.0

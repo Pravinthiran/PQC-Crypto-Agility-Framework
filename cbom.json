@@ -1,0 +1,247 @@
+{
+  "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.6",
+  "serialNumber": "urn:uuid:d65ed57c-a772-4d85-ade1-4f391acfde2c",
+  "version": 1,
+  "metadata": {
+    "timestamp": "2026-11-03T04:08:01.826800+00:00",
+    "tools": {
+      "components": [
+        {
+          "type": "application",
+          "name": "Crypto-Agility Discovery Engine",
+          "version": "1.0.0"
+        }
+      ]
+    },
+    "component": {
+      "type": "application",
+      "name": "Enterprise Testbed Target",
+      "scope": "optional"
+    },
+    "properties": [
+      {
+        "name": "total_cryptographic_assets",
+        "value": "5"
+      },
+      {
+        "name": "quantum_vulnerable_count",
+        "value": "5"
+      },
+      {
+        "name": "quantum_safe_count",
+        "value": "0"
+      },
+      {
+        "name": "critical_urgency_count",
+        "value": "3"
+      }
+    ]
+  },
+  "components": [
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "crypto-asset-1",
+      "name": "MD5-Hash Function",
+      "properties": [
+        {
+          "name": "asset_type",
+          "value": "Source Code Function Call"
+        },
+        {
+          "name": "location",
+          "value": "C:\\Users\\Maniv\\Desktop\\sem 7(internship)\\PQC_Agility_Framework\\testbed_repo\\legacy_app.py:6"
+        },
+        {
+          "name": "primitive_family",
+          "value": "Hash Function"
+        },
+        {
+          "name": "algorithm",
+          "value": "MD5"
+        },
+        {
+          "name": "key_size_or_curve",
+          "value": "N/A"
+        },
+        {
+          "name": "quantum_safe",
+          "value": "false"
+        },
+        {
+          "name": "vulnerability_type",
+          "value": "Classical Deprecation"
+        },
+        {
+          "name": "migration_urgency",
+          "value": "Medium"
+        }
+      ]
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "crypto-asset-2",
+      "name": "SHA1-Hash Function",
+      "properties": [
+        {
+          "name": "asset_type",
+          "value": "Source Code Function Call"
+        },
+        {
+          "name": "location",
+          "value": "C:\\Users\\Maniv\\Desktop\\sem 7(internship)\\PQC_Agility_Framework\\testbed_repo\\legacy_app.py:7"
+        },
+        {
+          "name": "primitive_family",
+          "value": "Hash Function"
+        },
+        {
+          "name": "algorithm",
+          "value": "SHA1"
+        },
+        {
+          "name": "key_size_or_curve",
+          "value": "N/A"
+        },
+        {
+          "name": "quantum_safe",
+          "value": "false"
+        },
+        {
+          "name": "vulnerability_type",
+          "value": "Classical Deprecation"
+        },
+        {
+          "name": "migration_urgency",
+          "value": "Medium"
+        }
+      ]
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "crypto-asset-3",
+      "name": "RSA-Asymmetric Cryptography",
+      "properties": [
+        {
+          "name": "asset_type",
+          "value": "Source Code Key Generation"
+        },
+        {
+          "name": "location",
+          "value": "C:\\Users\\Maniv\\Desktop\\sem 7(internship)\\PQC_Agility_Framework\\testbed_repo\\legacy_app.py:10"
+        },
+        {
+          "name": "primitive_family",
+          "value": "Asymmetric Cryptography"
+        },
+        {
+          "name": "algorithm",
+          "value": "RSA"
+        },
+        {
+          "name": "key_size_or_curve",
+          "value": "2048"
+        },
+        {
+          "name": "quantum_safe",
+          "value": "false"
+        },
+        {
+          "name": "vulnerability_type",
+          "value": "Shor's Algorithm (Vulnerable to CRQC)"
+        },
+        {
+          "name": "migration_urgency",
+          "value": "Critical"
+        }
+      ]
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "crypto-asset-4",
+      "name": "ECC-Asymmetric Cryptography",
+      "properties": [
+        {
+          "name": "asset_type",
+          "value": "Source Code Key Generation"
+        },
+        {
+          "name": "location",
+          "value": "C:\\Users\\Maniv\\Desktop\\sem 7(internship)\\PQC_Agility_Framework\\testbed_repo\\legacy_app.py:15"
+        },
+        {
+          "name": "primitive_family",
+          "value": "Asymmetric Cryptography"
+        },
+        {
+          "name": "algorithm",
+          "value": "ECC"
+        },
+        {
+          "name": "key_size_or_curve",
+          "value": "SECP256R1"
+        },
+        {
+          "name": "quantum_safe",
+          "value": "false"
+        },
+        {
+          "name": "vulnerability_type",
+          "value": "Shor's Algorithm (Vulnerable to CRQC)"
+        },
+        {
+          "name": "migration_urgency",
+          "value": "Critical"
+        }
+      ]
+    },
+    {
+      "type": "cryptographic-asset",
+      "bom-ref": "crypto-asset-5",
+      "name": "RSA-Public Key Infrastructure (PKI)",
+      "properties": [
+        {
+          "name": "asset_type",
+          "value": "X.509 Digital Certificate"
+        },
+        {
+          "name": "location",
+          "value": "C:\\Users\\Maniv\\Desktop\\sem 7(internship)\\PQC_Agility_Framework\\testbed_repo\\certs\\legacy_bank.crt"
+        },
+        {
+          "name": "primitive_family",
+          "value": "Public Key Infrastructure (PKI)"
+        },
+        {
+          "name": "algorithm",
+          "value": "RSA"
+        },
+        {
+          "name": "key_size_or_curve",
+          "value": "2048 bits"
+        },
+        {
+          "name": "quantum_safe",
+          "value": "false"
+        },
+        {
+          "name": "vulnerability_type",
+          "value": "Shor's Algorithm (Factorization Vulnerability)"
+        },
+        {
+          "name": "migration_urgency",
+          "value": "Critical"
+        },
+        {
+          "name": "signature_algorithm",
+          "value": "sha256WithRSAEncryption"
+        },
+        {
+          "name": "common_name",
+          "value": "legacy-core-banking.local"
+        }
+      ]
+    }
+  ]
+}
