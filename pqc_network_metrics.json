@@ -1,0 +1,20 @@
+[
+  {
+    "primitive_negotiated":"Classical RSA-2048 (TLS 1.2)",
+    "packet_count":4,
+    "total_wire_bytes":1745,
+    "total_payload_bytes":1585,
+    "max_frame_size_bytes":1283,
+    "handshake_duration_ms":37.0,
+    "mtu_fragmentation_risk":"No (Fits MTU)"
+  },
+  {
+    "primitive_negotiated":"Post-Quantum ML-KEM-768 (FIPS 203)",
+    "packet_count":3,
+    "total_wire_bytes":2519,
+    "total_payload_bytes":2399,
+    "max_frame_size_bytes":1267,
+    "handshake_duration_ms":27.0,
+    "mtu_fragmentation_risk":"No (Fits MTU)"
+  }
+]

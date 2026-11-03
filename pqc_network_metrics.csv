@@ -1,0 +1,3 @@
+primitive_negotiated,packet_count,total_wire_bytes,total_payload_bytes,max_frame_size_bytes,handshake_duration_ms,mtu_fragmentation_risk
+Classical RSA-2048 (TLS 1.2),4,1745,1585,1283,37.0,No (Fits MTU)
+Post-Quantum ML-KEM-768 (FIPS 203),3,2519,2399,1267,27.0,No (Fits MTU)
