@@ -18,5 +18,75 @@
     "key_size_or_curve": "2048 bits",
     "location": "tcp://127.0.0.1:8443 (Wire Handshake)",
     "discovery_mode": "Dynamic Network Traffic Probe"
+  },
+  {
+    "bom_ref": "crypto-asset-1",
+    "component_name": "RSA-2048-KeyGen-Module",
+    "asset_type": "Source Code Function Call",
+    "primitive_family": "Asymmetric Cryptography",
+    "algorithm": "RSA",
+    "key_size_or_curve": "2048",
+    "location": "testbed_repo/legacy_crypto_service.py:18",
+    "discovery_mode": "Static AST Code Analysis"
+  },
+  {
+    "bom_ref": "crypto-asset-2",
+    "component_name": "X509-Bank-Gateway-Certificate",
+    "asset_type": "X.509 Keystore Certificate",
+    "primitive_family": "Public Key Infrastructure (PKI)",
+    "algorithm": "RSA",
+    "key_size_or_curve": "2048 bits",
+    "location": "testbed_repo/certs/legacy_bank.crt",
+    "discovery_mode": "Dynamic Keystore Inspection"
+  },
+  {
+    "bom_ref": "crypto-asset-3",
+    "component_name": "ECC-ECDSA-Auth-Service",
+    "asset_type": "Source Code Function Call",
+    "primitive_family": "Asymmetric Cryptography",
+    "algorithm": "ECC",
+    "key_size_or_curve": "SECP256R1",
+    "location": "testbed_repo/auth_engine.py:42",
+    "discovery_mode": "Static AST Code Analysis"
+  },
+  {
+    "bom_ref": "crypto-asset-4",
+    "component_name": "Legacy-Integrity-Checksum-SHA1",
+    "asset_type": "Source Code Function Call",
+    "primitive_family": "Cryptographic Hash Function",
+    "algorithm": "SHA1",
+    "key_size_or_curve": "N/A",
+    "location": "testbed_repo/legacy_crypto_service.py:34",
+    "discovery_mode": "Static AST Code Analysis"
+  },
+  {
+    "bom_ref": "crypto-asset-5",
+    "component_name": "Legacy-Password-Hasher-MD5",
+    "asset_type": "Source Code Function Call",
+    "primitive_family": "Cryptographic Hash Function",
+    "algorithm": "MD5",
+    "key_size_or_curve": "N/A",
+    "location": "testbed_repo/legacy_crypto_service.py:27",
+    "discovery_mode": "Static AST Code Analysis"
+  },
+  {
+    "bom_ref": "net-cert-8443",
+    "component_name": "Network-Presented-Cert-RSA",
+    "asset_type": "X.509 Wire Certificate",
+    "primitive_family": "Public Key Infrastructure (PKI)",
+    "algorithm": "RSA",
+    "key_size_or_curve": "2048 bits",
+    "location": "tcp://127.0.0.1:8443 (Wire Handshake)",
+    "discovery_mode": "Dynamic Network Traffic Probe"
+  },
+  {
+    "bom_ref": "net-cipher-8443",
+    "component_name": "Network-Transit-Cipher-TLS_AES_256_GCM_SHA384",
+    "asset_type": "Network Transit Protocol",
+    "primitive_family": "Cipher Suite / Key Exchange",
+    "algorithm": "TLS_AES_256_GCM_SHA384",
+    "key_size_or_curve": "256 bits",
+    "location": "tcp://127.0.0.1:8443",
+    "discovery_mode": "Dynamic Network Traffic Probe"
   }
 ]
