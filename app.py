@@ -297,27 +297,27 @@ else:
             latency_melted["Operation_Phase"] = latency_melted["Operation_Phase"].map(phase_map)
 
             # Grouped bar chart with xOffset and valid domain bounds for log scale
+            # Option A: Multi-series Line/Point Chart (Clean Log Scale Representation)
             latency_chart = (
                 alt.Chart(latency_melted)
-                .mark_bar()
+                .mark_line(point=alt.OverlayMarkDef(size=80, filled=True))
                 .encode(
-                    x=alt.X("primitive:N", title="Cryptographic Primitive", axis=alt.Axis(labelAngle=0)),
-                    xOffset="Operation_Phase:N",
+                    x=alt.X('primitive:N', title='Cryptographic Primitive', axis=alt.Axis(labelAngle=0)),
                     y=alt.Y(
-                        "Latency_ms:Q",
-                        title="Latency (ms, Log Scale)",
-                        scale=alt.Scale(type="log", domain=[0.01, 1000]),
+                        'Latency_ms:Q',
+                        title='Latency (ms, Log Scale)',
+                        scale=alt.Scale(type='log')
                     ),
                     color=alt.Color(
-                        "Operation_Phase:N",
-                        title="Operation Phase",
-                        scale=alt.Scale(scheme="tableau10"),
+                        'Operation_Phase:N',
+                        title='Operation Phase',
+                        scale=alt.Scale(scheme='tableau10')
                     ),
                     tooltip=[
-                        alt.Tooltip("primitive:N", title="Primitive"),
-                        alt.Tooltip("Operation_Phase:N", title="Phase"),
-                        alt.Tooltip("Latency_ms:Q", format=".4f", title="Latency (ms)"),
-                    ],
+                        alt.Tooltip('primitive:N', title='Primitive'),
+                        alt.Tooltip('Operation_Phase:N', title='Phase'),
+                        alt.Tooltip('Latency_ms:Q', format='.4f', title='Latency (ms)')
+                    ]
                 )
                 .properties(height=380)
             )
