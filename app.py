@@ -307,23 +307,28 @@ else:
       st.altair_chart(latency_chart, use_container_width=True)
 
     with tab2:
-      st.markdown("##### Public Key & Ciphertext / Signature Sizes")
-      size_chart = (
-          alt.Chart(df_bench)
-          .transform_fold(
-              ["public_key_bytes", "ciphertext_or_sig_bytes"],
-              as_=["Payload_Type", "Bytes"],
-          )
-          .mark_bar()
-          .encode(
-              x=alt.X("primitive:N", title="Cryptographic Primitive"),
-              y=alt.Y("Bytes:Q", title="Size (Bytes)"),
-              color=alt.Color("Payload_Type:N", title="Artifact Type"),
-              tooltip=["primitive:N", "Payload_Type:N", "Bytes:Q"],
-          )
-          .properties(height=350)
-      )
-      st.altair_chart(size_chart, use_container_width=True)
+            st.markdown("##### Public Key & Ciphertext / Signature Sizes")
+            size_chart = (
+                alt.Chart(df_bench)
+                .transform_fold(
+                    ['public_key_bytes', 'ciphertext_or_sig_bytes'],
+                    as_=['Payload_Type', 'Bytes'],
+                )
+                .mark_bar()
+                .encode(
+                    x=alt.X('primitive:N', title='Cryptographic Primitive', axis=alt.Axis(labelAngle=0)),
+                    xOffset='Payload_Type:N',
+                    y=alt.Y('Bytes:Q', title='Size (Bytes)'),
+                    color=alt.Color('Payload_Type:N', title='Artifact Type'),
+                    tooltip=[
+                        alt.Tooltip('primitive:N', title='Primitive'),
+                        alt.Tooltip('Payload_Type:N', title='Type'),
+                        alt.Tooltip('Bytes:Q', title='Size (Bytes)')
+                    ],
+                )
+                .properties(height=380)
+            )
+            st.altair_chart(size_chart, use_container_width=True)
 
     with tab3:
       st.markdown("##### Process RAM Delta & System Footprint")
