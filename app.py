@@ -269,10 +269,12 @@ else:
 
     df_bench = load_benchmark_metrics()
     if not df_bench.empty:
-        tab1, tab2, tab3 = st.tabs([
+        # Four distinct benchmarking tabs including Tier 2 PCAP analysis
+        tab1, tab2, tab3, tab4 = st.tabs([
             "⚡ Latency Comparisons (ms)",
             "📦 Size Overheads (Bytes)",
             "💾 Memory Footprint (KB)",
+            "🌐 Network & Wire Overhead (PCAP)"
         ])
 
         with tab1:
@@ -296,8 +298,7 @@ else:
             }
             latency_melted["Operation_Phase"] = latency_melted["Operation_Phase"].map(phase_map)
 
-            # Grouped bar chart with xOffset and valid domain bounds for log scale
-            # Option A: Multi-series Line/Point Chart (Clean Log Scale Representation)
+            # Clean multi-series line chart with filled points across log scale
             latency_chart = (
                 alt.Chart(latency_melted)
                 .mark_line(point=alt.OverlayMarkDef(size=80, filled=True))
@@ -380,6 +381,48 @@ else:
                 ]],
                 use_container_width=True,
             )
+
+        with tab4:
+            st.markdown("##### Tier 2: Real-World Wire Transmission & PCAP Trace Evaluation")
+            net_csv = "pqc_network_metrics.csv"
+            if os.path.exists(net_csv):
+                df_net = pd.read_csv(net_csv)
+
+                # Wire Overhead Comparison Bar Chart
+                net_chart = (
+                    alt.Chart(df_net)
+                    .mark_bar(size=45)
+                    .encode(
+                        x=alt.X(
+                            'primitive_negotiated:N',
+                            title='Negotiated Handshake Protocol',
+                            axis=alt.Axis(labelAngle=0)
+                        ),
+                        y=alt.Y(
+                            'total_wire_bytes:Q',
+                            title='Total Transmitted Wire Volume (Bytes)'
+                        ),
+                        color=alt.Color(
+                            'primitive_negotiated:N',
+                            title='Handshake Protocol',
+                            scale=alt.Scale(scheme='category10')
+                        ),
+                        tooltip=[
+                            alt.Tooltip('primitive_negotiated:N', title='Protocol'),
+                            alt.Tooltip('total_wire_bytes:Q', title='Wire Bytes'),
+                            alt.Tooltip('handshake_duration_ms:Q', title='Duration (ms)'),
+                            alt.Tooltip('mtu_fragmentation_risk:N', title='MTU Risk (>1500B)')
+                        ]
+                    )
+                    .properties(height=340)
+                )
+
+                st.altair_chart(net_chart, use_container_width=True)
+
+                # Explicit Data Table
+                st.dataframe(df_net, use_container_width=True)
+            else:
+                st.info("Run `python analyze_tier2_pcaps.py` to generate the network metrics dataset.")
     else:
         st.warning(
             "[-] Benchmarking dataset (pqc_benchmark_metrics.csv) not found. Run pqc_benchmarking.py first."
