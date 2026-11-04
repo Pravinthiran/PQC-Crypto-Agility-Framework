@@ -138,7 +138,6 @@ st.markdown("---")
 if view_mode == "Risk Inventory & Heatmap":
   st.subheader("📋 Cryptographic Asset Inventory & Migration Prioritization")
 
-  # Complete data table showing all discovered assets (Static, Certs & Wire)
   display_cols = [
       col
       for col in [
@@ -167,7 +166,6 @@ if view_mode == "Risk Inventory & Heatmap":
   st.markdown("---")
   st.subheader("📊 Job 2: Risk Matrix Heatmap (Vulnerability vs Criticality)")
 
-  # Group overlapping coordinates to show all assets neatly without label smudging
   grouped_rows = []
   for (crit, vuln), group in df_cbom.groupby(["crit_weight", "vuln_weight"]):
     algs = sorted(list(group["algorithm"].unique()))
@@ -198,7 +196,6 @@ if view_mode == "Risk Inventory & Heatmap":
 
   heatmap_data = pd.DataFrame(grouped_rows)
 
-  # Auto-scaling domain based on all present asset weights
   x_domain = sorted(df_cbom["crit_weight"].unique().astype(int).tolist())
   y_domain = sorted(
       df_cbom["vuln_weight"].unique().astype(int).tolist(), reverse=True
@@ -219,7 +216,6 @@ if view_mode == "Risk Inventory & Heatmap":
       ),
   )
 
-  # Heatmap cell blocks
   heatmap_rects = base.mark_rect(stroke="#2E3440", strokeWidth=2).encode(
       color=alt.Color(
           "MPS:Q",
@@ -282,7 +278,6 @@ else:
         "🚀 Simulate PQC Migration", type="primary", use_container_width=True
     )
 
-  # Job 4: Link button click to Phase 4 CryptoSwapRouter backend
   if trigger_migration:
     st.info(
         f"[*] Dispatching swap mechanism for **{selected_ref}** to liboqs"
@@ -305,11 +300,12 @@ else:
 
   df_bench = load_benchmark_metrics()
   if not df_bench.empty:
-    tab1, tab2, tab3, tab4 = st.tabs([
+    tab1, tab2, tab3, tab4, tab5 = st.tabs([
         "⚡ Latency Comparisons (ms)",
         "📦 Size Overheads (Bytes)",
         "💾 Memory Footprint (KB)",
         "🌐 Network & Wire Overhead (PCAP)",
+        "📊 Tier 3: Framework Scalability & Stress Test",
     ])
 
     with tab1:
@@ -486,6 +482,109 @@ else:
         st.info(
             "Run `python analyze_tier2_pcaps.py` to generate the network"
             " metrics dataset."
+        )
+
+    with tab5:
+      st.markdown(
+          "##### Tier 3: Operational Throughput & Large-Scale Inventory"
+          " Processing"
+      )
+      stress_csv = "tier3_scalability_metrics.csv"
+      if os.path.exists(stress_csv):
+        df_stress = pd.read_csv(stress_csv)
+
+        col_a, col_b = st.columns(2)
+        with col_a:
+          latency_melt = pd.melt(
+              df_stress,
+              id_vars=["asset_scale_n"],
+              value_vars=[
+                  "cbom_ingestion_ms",
+                  "prioritization_engine_ms",
+                  "total_latency_ms",
+              ],
+              var_name="Pipeline_Stage",
+              value_name="Latency_ms",
+          )
+          stage_map = {
+              "cbom_ingestion_ms": "CBOM Ingestion",
+              "prioritization_engine_ms": "Prioritization Engine",
+              "total_latency_ms": "Total Framework Latency",
+          }
+          latency_melt["Pipeline_Stage"] = latency_melt["Pipeline_Stage"].map(
+              stage_map
+          )
+
+          chart_scaling = (
+              alt.Chart(latency_melt)
+              .mark_line(point=alt.OverlayMarkDef(size=60, filled=True))
+              .encode(
+                  x=alt.X(
+                      "asset_scale_n:Q",
+                      title="Cryptographic Assets (N)",
+                      scale=alt.Scale(type="linear"),
+                  ),
+                  y=alt.Y("Latency_ms:Q", title="Processing Latency (ms)"),
+                  color=alt.Color(
+                      "Pipeline_Stage:N",
+                      title="Stage",
+                      scale=alt.Scale(scheme="category10"),
+                  ),
+                  tooltip=[
+                      alt.Tooltip("asset_scale_n:Q", title="Assets (N)"),
+                      alt.Tooltip("Pipeline_Stage:N", title="Stage"),
+                      alt.Tooltip(
+                          "Latency_ms:Q", format=".2f", title="Latency (ms)"
+                      ),
+                  ],
+              )
+              .properties(
+                  height=340,
+                  title="Linear Execution Latency vs Inventory Scale (O(N))",
+              )
+          )
+          st.altair_chart(chart_scaling, use_container_width=True)
+
+        with col_b:
+          chart_throughput = (
+              alt.Chart(df_stress)
+              .mark_bar(size=35, color="#2ca02c")
+              .encode(
+                  x=alt.X(
+                      "asset_scale_n:O",
+                      title="Cryptographic Assets (N)",
+                      axis=alt.Axis(labelAngle=0),
+                  ),
+                  y=alt.Y(
+                      "throughput_assets_sec:Q",
+                      title="Throughput (Assets / Second)",
+                  ),
+                  tooltip=[
+                      alt.Tooltip("asset_scale_n:O", title="Assets (N)"),
+                      alt.Tooltip(
+                          "throughput_assets_sec:Q",
+                          format=",.1f",
+                          title="Throughput (assets/sec)",
+                      ),
+                      alt.Tooltip(
+                          "ram_delta_kb:Q",
+                          format=",.2f",
+                          title="RAM Delta (KB)",
+                      ),
+                  ],
+              )
+              .properties(
+                  height=340, title="Operational Throughput Velocity"
+              )
+          )
+          st.altair_chart(chart_throughput, use_container_width=True)
+
+        st.markdown("###### Empirical Stress Test Datatable")
+        st.dataframe(df_stress, use_container_width=True)
+      else:
+        st.info(
+            "Run `python stress_test_tier3.py` to generate the scale metrics"
+            " dataset."
         )
   else:
     st.warning(

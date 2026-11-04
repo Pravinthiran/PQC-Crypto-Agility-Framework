@@ -1,0 +1,5 @@
+asset_scale_n,file_size_kb,cbom_ingestion_ms,prioritization_engine_ms,total_latency_ms,throughput_assets_sec,ram_delta_kb,mosca_violations_detected
+100,36.53,10.256,5.13,15.386,6499.4,2092.0,92
+500,183.11,26.741,6.734,33.475,14936.5,1040.0,470
+1000,366.13,24.085,10.862,34.947,28614.8,296.0,942
+5000,1834.43,35.963,44.475,80.438,62159.7,7112.0,4686

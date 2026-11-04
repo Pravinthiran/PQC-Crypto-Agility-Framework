@@ -24,3 +24,4 @@ dist/
 
 # Local Streamlit config
 .streamlit/secrets.toml
+stress_test_data/
