@@ -1,0 +1,2 @@
+Total Ground Truth Items,True Positives (TP),True Negatives (TN),False Positives (FP),False Negatives (FN),Accuracy,Precision,Recall,F1-Score
+10,7,3,0,0,100.00%,100.00%,100.00%,100.00%

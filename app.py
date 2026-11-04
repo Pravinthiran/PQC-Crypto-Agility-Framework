@@ -484,7 +484,7 @@ else:
             " metrics dataset."
         )
 
-      # Display real-socket TCP loopback measurement if generated
+      # 1. Real-socket TCP loopback measurement
       real_net_csv = "empirical_real_network_benchmarks.csv"
       if os.path.exists(real_net_csv):
         st.markdown(
@@ -493,13 +493,22 @@ else:
         df_real_net = pd.read_csv(real_net_csv)
         st.dataframe(df_real_net, use_container_width=True)
 
+      # 2. Concurrency stress and dropped connection measurement
+      conc_csv = "concurrency_saturation_metrics.csv"
+      if os.path.exists(conc_csv):
+        st.markdown(
+            "###### Concurrent Handshake Saturation & Dropped Packet Analysis"
+        )
+        df_conc = pd.read_csv(conc_csv)
+        st.dataframe(df_conc, use_container_width=True)
+
     with tab5:
       st.markdown(
           "##### Tier 3: Operational Throughput & Large-Scale Inventory"
           " Processing"
       )
 
-      # Display real X.509 keystore ingestion rate metrics if generated
+      # 1. Real X.509 keystore ingestion rate metrics
       keystore_csv = "keystore_stress_metrics.csv"
       if os.path.exists(keystore_csv):
         st.markdown("###### X.509 DER Disk Keystore Parsing Rate")
@@ -521,6 +530,16 @@ else:
               f"{df_ks['ingestion_throughput_certs_per_sec'].iloc[0]} certs/sec",
           )
 
+      # 2. Discovery accuracy confusion matrix
+      acc_csv = "discovery_accuracy_metrics.csv"
+      if os.path.exists(acc_csv):
+        st.markdown(
+            "###### Discovery Engine Precision, Recall & Confusion Matrix"
+        )
+        df_acc = pd.read_csv(acc_csv)
+        st.dataframe(df_acc, use_container_width=True)
+
+      # 3. Scalability metrics curves & data table
       stress_csv = "tier3_scalability_metrics.csv"
       if os.path.exists(stress_csv):
         df_stress = pd.read_csv(stress_csv)
