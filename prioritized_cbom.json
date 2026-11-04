@@ -1,24 +1,5 @@
 [
   {
-    "bom_ref":"net-cert-8443",
-    "component_name":"Network-Presented-Cert-RSA",
-    "asset_type":"X.509 Wire Certificate",
-    "primitive_family":"Public Key Infrastructure (PKI)",
-    "algorithm":"RSA",
-    "key_size_or_curve":"2048 bits",
-    "location":"tcp:\/\/127.0.0.1:8443 (Wire Handshake)",
-    "discovery_mode":"Dynamic Network Traffic Probe",
-    "vuln_weight":10.0,
-    "crit_weight":10.0,
-    "D_shelf_life":8.0,
-    "T_migration_time":3.0,
-    "mosca_sum":11.0,
-    "Q_threat_horizon":7.0,
-    "mosca_violation":true,
-    "MPS":100.0,
-    "migration_urgency":"Critical"
-  },
-  {
     "bom_ref":"crypto-asset-2",
     "component_name":"X509-Bank-Gateway-Certificate",
     "asset_type":"X.509 Keystore Certificate",
@@ -92,25 +73,6 @@
     "Q_threat_horizon":7.0,
     "mosca_violation":true,
     "MPS":93.0,
-    "migration_urgency":"Critical"
-  },
-  {
-    "bom_ref":"net-cipher-8443",
-    "component_name":"Network-Transit-Cipher-TLS_AES_256_GCM_SHA384",
-    "asset_type":"Network Transit Protocol",
-    "primitive_family":"Cipher Suite \/ Key Exchange",
-    "algorithm":"TLS_AES_256_GCM_SHA384",
-    "key_size_or_curve":"256 bits",
-    "location":"tcp:\/\/127.0.0.1:8443",
-    "discovery_mode":"Dynamic Network Traffic Probe",
-    "vuln_weight":6.0,
-    "crit_weight":10.0,
-    "D_shelf_life":8.0,
-    "T_migration_time":3.0,
-    "mosca_sum":11.0,
-    "Q_threat_horizon":7.0,
-    "mosca_violation":true,
-    "MPS":82.0,
     "migration_urgency":"Critical"
   },
   {

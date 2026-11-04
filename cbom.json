@@ -1,25 +1,5 @@
 [
   {
-    "bom_ref": "net-cipher-8443",
-    "component_name": "Network-Transit-Cipher-TLS_AES_256_GCM_SHA384",
-    "asset_type": "Network Transit Protocol",
-    "primitive_family": "Cipher Suite / Key Exchange",
-    "algorithm": "TLS_AES_256_GCM_SHA384",
-    "key_size_or_curve": "256 bits",
-    "location": "tcp://127.0.0.1:8443",
-    "discovery_mode": "Dynamic Network Traffic Probe"
-  },
-  {
-    "bom_ref": "net-cert-8443",
-    "component_name": "Network-Presented-Cert-RSA",
-    "asset_type": "X.509 Wire Certificate",
-    "primitive_family": "Public Key Infrastructure (PKI)",
-    "algorithm": "RSA",
-    "key_size_or_curve": "2048 bits",
-    "location": "tcp://127.0.0.1:8443 (Wire Handshake)",
-    "discovery_mode": "Dynamic Network Traffic Probe"
-  },
-  {
     "bom_ref": "crypto-asset-1",
     "component_name": "RSA-2048-KeyGen-Module",
     "asset_type": "Source Code Function Call",
