@@ -1,0 +1,3 @@
+Protocol,Mean_Socket_Latency_ms,Min_Latency_ms,Max_Latency_ms,Total_Wire_Exchanged_Bytes,Trials
+Classical RSA-2048 Baseline,0.117,0.072,0.185,554,50
+Post-Quantum ML-KEM-768 (FIPS 203),0.349,0.261,1.45,2276,50

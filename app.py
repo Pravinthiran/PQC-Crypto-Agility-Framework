@@ -484,11 +484,43 @@ else:
             " metrics dataset."
         )
 
+      # Display real-socket TCP loopback measurement if generated
+      real_net_csv = "empirical_real_network_benchmarks.csv"
+      if os.path.exists(real_net_csv):
+        st.markdown(
+            "###### Empirical Loopback Socket Measurement (50 Handshake Trials)"
+        )
+        df_real_net = pd.read_csv(real_net_csv)
+        st.dataframe(df_real_net, use_container_width=True)
+
     with tab5:
       st.markdown(
           "##### Tier 3: Operational Throughput & Large-Scale Inventory"
           " Processing"
       )
+
+      # Display real X.509 keystore ingestion rate metrics if generated
+      keystore_csv = "keystore_stress_metrics.csv"
+      if os.path.exists(keystore_csv):
+        st.markdown("###### X.509 DER Disk Keystore Parsing Rate")
+        df_ks = pd.read_csv(keystore_csv)
+        c1, c2, c3 = st.columns(3)
+        with c1:
+          st.metric(
+              "Total Certificates Parsed",
+              int(df_ks["total_certificates_parsed"].iloc[0]),
+          )
+        with c2:
+          st.metric(
+              "Total Parsing Latency",
+              f"{df_ks['total_latency_seconds'].iloc[0]} s",
+          )
+        with c3:
+          st.metric(
+              "Sustained Throughput",
+              f"{df_ks['ingestion_throughput_certs_per_sec'].iloc[0]} certs/sec",
+          )
+
       stress_csv = "tier3_scalability_metrics.csv"
       if os.path.exists(stress_csv):
         df_stress = pd.read_csv(stress_csv)
